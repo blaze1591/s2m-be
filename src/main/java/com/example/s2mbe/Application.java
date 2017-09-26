@@ -13,8 +13,8 @@ public class Application {
 	@RequestMapping("/")
 	@ResponseBody
 	String home() {
-		return "Hello World!";
-	}
+        return "Hello World";
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
