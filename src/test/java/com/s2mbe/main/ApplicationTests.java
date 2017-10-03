@@ -1,4 +1,4 @@
-package com.example.s2mbe;
+package com.s2mbe.main;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
