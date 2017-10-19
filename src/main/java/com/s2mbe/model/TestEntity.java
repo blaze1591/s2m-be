@@ -3,6 +3,9 @@ package com.s2mbe.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+
+@Entity
 public class TestEntity {
     @Id
     private String id;
