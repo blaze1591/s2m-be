@@ -1,7 +1,5 @@
 package com.s2mbe.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -13,16 +11,19 @@ import java.util.Date;
 @Entity
 public class User {
     @Id
-    @JsonIgnore
     private String id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+
     private String email;
-    private String password;
-    private Date registerDate;
-    @JsonIgnore
-    private String token;
-    @JsonIgnore
-    private Boolean active;
-    private String role;
+    private String address;
+    private String telephone;
+
+    private Date birthDate;
+    private Date registrationDate;
+
+    private Credentials credentials;
 
     public String getId() {
         return id;
@@ -30,6 +31,30 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -40,76 +65,66 @@ public class User {
         this.email = email;
     }
 
-    @JsonIgnore
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Date getRegisterDate() {
-        return registerDate;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
-    public String getToken() {
-        return token;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public Boolean getActive() {
-        return active;
+
+    public Credentials getCredentials() {
+        return credentials;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
     }
 
-    public String getRole() {
-        return role;
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", id)
-                .append("email", email)
-                .append("password", password)
-                .append("registerDate", registerDate)
-                .append("token", token)
-                .append("active", active)
-                .append("role", role)
-                .toString();
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
 
         User user = (User) o;
 
         return new EqualsBuilder()
                 .append(id, user.id)
+                .append(firstName, user.firstName)
+                .append(middleName, user.middleName)
+                .append(lastName, user.lastName)
                 .append(email, user.email)
-                .append(password, user.password)
-                .append(registerDate, user.registerDate)
-                .append(token, user.token)
-                .append(active, user.active)
-                .append(role, user.role)
+                .append(address, user.address)
+                .append(telephone, user.telephone)
+                .append(birthDate, user.birthDate)
+                .append(registrationDate, user.registrationDate)
+                .append(credentials, user.credentials)
                 .isEquals();
     }
 
@@ -117,14 +132,31 @@ public class User {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(id)
+                .append(firstName)
+                .append(middleName)
+                .append(lastName)
                 .append(email)
-                .append(password)
-                .append(registerDate)
-                .append(token)
-                .append(active)
-                .append(role)
+                .append(address)
+                .append(telephone)
+                .append(birthDate)
+                .append(registrationDate)
+                .append(credentials)
                 .toHashCode();
     }
 
-
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("firstName", firstName)
+                .append("middleName", middleName)
+                .append("lastName", lastName)
+                .append("email", email)
+                .append("address", address)
+                .append("telephone", telephone)
+                .append("birthDate", birthDate)
+                .append("registrationDate", registrationDate)
+                .append("credentials", credentials)
+                .toString();
+    }
 }

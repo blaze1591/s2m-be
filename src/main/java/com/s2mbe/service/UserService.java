@@ -20,4 +20,9 @@ public class UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    public boolean updateUser(User user) {
+        user = userRepository.save(user);
+        return user != null;
+    }
 }
