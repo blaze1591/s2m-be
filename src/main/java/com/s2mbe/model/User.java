@@ -5,13 +5,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class User {
-    @Id
-    private String id;
+public class User extends BasicEntity {
     private String firstName;
     private String middleName;
     private String lastName;
@@ -25,13 +22,6 @@ public class User {
 
     private Credentials credentials;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -115,7 +105,7 @@ public class User {
         User user = (User) o;
 
         return new EqualsBuilder()
-                .append(id, user.id)
+                .appendSuper(super.equals(o))
                 .append(firstName, user.firstName)
                 .append(middleName, user.middleName)
                 .append(lastName, user.lastName)
@@ -131,7 +121,7 @@ public class User {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(id)
+                .appendSuper(super.hashCode())
                 .append(firstName)
                 .append(middleName)
                 .append(lastName)
@@ -147,7 +137,7 @@ public class User {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
+                .appendSuper(super.toString())
                 .append("firstName", firstName)
                 .append("middleName", middleName)
                 .append("lastName", lastName)

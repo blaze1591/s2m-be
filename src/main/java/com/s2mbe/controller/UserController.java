@@ -20,11 +20,9 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-        if (userService.persistUser(user)) {
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(user, HttpStatus.UNPROCESSABLE_ENTITY);
+    public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
+        user = userService.persistUser(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -34,11 +32,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) {
-        user.setId(id);
-        if (userService.updateUser(user)) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(user, HttpStatus.UNPROCESSABLE_ENTITY);
+    public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) throws Exception {
+        user = userService.updateUser(id, user);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<User> deleteUser(@PathVariable("id") String id) throws Exception {
+        User user = userService.deleteUser(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
