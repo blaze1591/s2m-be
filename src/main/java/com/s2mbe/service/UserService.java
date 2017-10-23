@@ -17,8 +17,11 @@ public class UserService {
     EntityValidator entityValidator;
 
     public User persistUser(User user) throws Exception {
-        entityValidator.validateBody(User.class, user);
+        entityValidator.validateBody(user);
         user.setRegistrationDate(new Date());
+        user.setDeleted(false);
+        //TODO: activation logic
+//        user.getCredentials().setActive(false);
         return userRepository.save(user);
     }
 
@@ -28,14 +31,15 @@ public class UserService {
 
     public User updateUser(String id, User user) throws Exception {
         entityValidator.validateId(User.class, id);
+        entityValidator.validateBody(user);
         user.setId(id);
         return userRepository.save(user);
     }
 
     public User deleteUser(String id) throws Exception {
-        // TODO: Add delete flag to pojo
-        throw new UnsupportedOperationException();
-//        entityValidator.validateId(User.class, id);
-//        return true;
+        entityValidator.validateId(User.class, id);
+        User user = userRepository.findOne(id);
+        user.setDeleted(true);
+        return userRepository.save(user);
     }
 }

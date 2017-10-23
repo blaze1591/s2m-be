@@ -26,8 +26,8 @@ public class EntityValidator {
         }
     }
 
-    public void validateBody(Class type, BasicEntity entity) throws Exception {
-        Optional<Validator> validator = getValidator(type);
+    public void validateBody(BasicEntity entity) throws Exception {
+        Optional<Validator> validator = getValidator(entity.getClass());
         if (validator.isPresent()) {
             validator.get().validateBody(entity);
         }
@@ -54,6 +54,9 @@ public class EntityValidator {
 
         @Override
         public void validateBody(User user) throws Exception {
+            if (user.getCredentials() == null) {
+                throw new IllegalArgumentException("Credentials must be specified with userName, password and role");
+            }
             if (user.getCredentials().getUserName() == null) {
                 throw new IllegalArgumentException("userName must be specified");
             }
@@ -64,13 +67,13 @@ public class EntityValidator {
                 throw new IllegalArgumentException("User role must be specified");
             }
             if (user.getEmail() == null) {
-                throw new IllegalArgumentException("email must be specified");
+                throw new IllegalArgumentException("Email must be specified");
             }
             if (user.getFirstName() == null) {
-                throw new IllegalArgumentException("firstName must be specified");
+                throw new IllegalArgumentException("FirstName must be specified");
             }
             if (user.getLastName() == null) {
-                throw new IllegalArgumentException("lastName must be specified");
+                throw new IllegalArgumentException("LastName must be specified");
             }
         }
     }

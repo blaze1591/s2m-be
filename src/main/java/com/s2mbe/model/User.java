@@ -22,6 +22,8 @@ public class User extends BasicEntity {
 
     private Credentials credentials;
 
+    private Boolean deleted;
+
 
     public String getFirstName() {
         return firstName;
@@ -96,6 +98,14 @@ public class User extends BasicEntity {
         this.registrationDate = registrationDate;
     }
 
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,6 +125,7 @@ public class User extends BasicEntity {
                 .append(birthDate, user.birthDate)
                 .append(registrationDate, user.registrationDate)
                 .append(credentials, user.credentials)
+                .append(deleted, user.deleted)
                 .isEquals();
     }
 
@@ -131,13 +142,13 @@ public class User extends BasicEntity {
                 .append(birthDate)
                 .append(registrationDate)
                 .append(credentials)
+                .append(deleted)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .appendSuper(super.toString())
                 .append("firstName", firstName)
                 .append("middleName", middleName)
                 .append("lastName", lastName)
@@ -147,6 +158,7 @@ public class User extends BasicEntity {
                 .append("birthDate", birthDate)
                 .append("registrationDate", registrationDate)
                 .append("credentials", credentials)
+                .append("deleted", deleted)
                 .toString();
     }
 }
