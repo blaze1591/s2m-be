@@ -11,7 +11,6 @@ import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class ErrorHander {
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String,String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         return new ResponseEntity<>(createErrorRecord(ex), HttpStatus.BAD_REQUEST);
