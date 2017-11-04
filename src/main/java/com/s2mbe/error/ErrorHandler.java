@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
-public class ErrorHander {
+public class ErrorHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String,String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         return new ResponseEntity<>(createErrorRecord(ex), HttpStatus.BAD_REQUEST);
