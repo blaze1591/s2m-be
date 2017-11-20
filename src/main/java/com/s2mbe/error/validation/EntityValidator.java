@@ -20,17 +20,10 @@ public class EntityValidator {
             .put(User.class, new UserValidator())
             .build();
 
-    public void validateId(Class type, String id) throws Exception {
-        Optional<Validator> validator = getValidator(type);
-        if (validator.isPresent()) {
-            validator.get().validateId(id);
-        }
-    }
-
-    public void validateBody(BasicEntity entity) throws Exception {
+    public void validate(BasicEntity entity) throws Exception {
         Optional<Validator> validator = getValidator(entity.getClass());
         if (validator.isPresent()) {
-            validator.get().validateBody(entity);
+            validator.get().validate(entity);
         }
     }
 
@@ -40,21 +33,12 @@ public class EntityValidator {
 
 
     interface Validator<T extends BasicEntity> {
-        void validateId(String id) throws Exception;
-        void validateBody(T entity) throws Exception;
+        void validate(T entity) throws Exception;
     }
 
     class UserValidator implements Validator<User> {
         @Override
-        public void validateId(String id) throws Exception {
-            User user = userRepository.findOne(id);
-            if (user == null) {
-                throw new NoSuchElementException("Can not resolve user by id : " + id);
-            }
-        }
-
-        @Override
-        public void validateBody(User user) throws Exception {
+        public void validate(User user) throws Exception {
             if (user.getCredentials() == null) {
                 throw new IllegalArgumentException("Credentials must be specified with userName, password and role");
             }

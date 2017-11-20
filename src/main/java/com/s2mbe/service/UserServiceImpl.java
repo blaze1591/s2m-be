@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) throws Exception {
-        entityValidator.validateBody(user);
+        entityValidator.validate(user);
         if (!userRepository.exists(StringUtils.trimToEmpty(user.getId()))) {
             user.setRegistrationDate(new Date());
             Credentials credentials = user.getCredentials();
