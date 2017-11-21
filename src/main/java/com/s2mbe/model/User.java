@@ -1,5 +1,6 @@
 package com.s2mbe.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -20,6 +21,10 @@ public class User extends BasicEntity {
     private Date registrationDate;
 
     private Credentials credentials;
+
+    @JsonIgnore
+    private String registrationToken;
+    private Boolean active;
 
     private Boolean deleted;
 
@@ -47,5 +52,19 @@ public class User extends BasicEntity {
         this.deleted = deleted;
     }
 
+    public String getRegistrationToken() {
+        return registrationToken;
+    }
 
+    public void setRegistrationToken(String registrationToken) {
+        this.registrationToken = registrationToken;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }

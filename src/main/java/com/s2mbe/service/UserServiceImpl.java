@@ -5,6 +5,7 @@ import com.s2mbe.error.validation.EntityValidator;
 import com.s2mbe.model.Credentials;
 import com.s2mbe.model.User;
 import com.s2mbe.repository.UserRepository;
+import com.s2mbe.service.mail.MailService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private EntityValidator entityValidator;
+    private MailService mailService;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -29,6 +31,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public void setEntityValidator(EntityValidator entityValidator) {
         this.entityValidator = entityValidator;
+    }
+
+    @Autowired
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
     }
 
     @Bean
@@ -43,10 +50,8 @@ public class UserServiceImpl implements UserService {
             user.setRegistrationDate(new Date());
             Credentials credentials = user.getCredentials();
             credentials.setPassword(passwordEncoder().encode(credentials.getPassword()));
-            //TODO: activation logic
-//        user.getCredentials().setActive(false);
+            mailService.sendRegistrationToken(user);
         }
-
         return userRepository.save(user);
     }
 
@@ -94,5 +99,21 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new UserNotFoundException();
         }
+    }
+
+    /**
+     * Activate user by given registrationToken
+     *
+     * @param registrationToken to look by
+     * @throws IllegalArgumentException is user was not found by given registrationToken
+     */
+    @Override
+    public User activateUser(String registrationToken) {
+        User user = userRepository.findByRegistrationToken(registrationToken);
+        if (user == null) {
+            throw new IllegalArgumentException("Wrong registration token!");
+        }
+        user.setActive(true);
+        return userRepository.save(user);
     }
 }

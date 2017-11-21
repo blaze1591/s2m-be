@@ -18,4 +18,6 @@ public interface UserService {
   User findByEmail(String email);
 
   User findByName(String name);
+
+  User activateUser(String registrationToken);
 }

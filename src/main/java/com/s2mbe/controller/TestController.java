@@ -25,10 +25,4 @@ public class TestController {
         List<TestEntity> testEntities = testRepository.findAll();
         return new ResponseEntity<>(testEntities, HttpStatus.OK);
     }
-
-    @GetMapping("/mailtest")
-    public ResponseEntity sendMail() {
-        mailService.sendMail("HELLO, THIS IS MAILSENDER FROM S2M");
-        return new ResponseEntity(HttpStatus.OK);
-    }
 }

@@ -1,5 +1,7 @@
 package com.s2mbe.service.mail;
 
+import com.s2mbe.model.User;
+
 public interface MailService {
-    void sendMail(String message);
+    void sendRegistrationToken(User user);
 }

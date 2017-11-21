@@ -24,10 +24,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +35,7 @@ public class AuthController {
 
     public final static String SIGNUP_URL = "/api/auth/signup";
     public final static String SIGNIN_URL = "/api/auth/signin";
+    public final static String ACTIVATE_URL = "/api/auth/activate/";
     public final static String REFRESH_TOKEN_URL = "/api/auth/token/refresh";
     @Autowired
     UserServiceImpl userServiceImpl;
@@ -187,4 +185,9 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
     }
 
+    @GetMapping(ACTIVATE_URL + "{registrationToken}")
+    public  ResponseEntity<User> activateUser(@PathVariable String registrationToken) {
+        User user = userServiceImpl.activateUser(registrationToken);
+        return ResponseEntity.ok(user);
+    }
 }

@@ -9,7 +9,6 @@ import javax.persistence.Embeddable;
 public class Credentials {
     private String userName;
     private String password;
-    private Boolean active;
     private String role;
 
     public String getUserName() {
