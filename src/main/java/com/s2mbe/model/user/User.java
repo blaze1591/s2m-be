@@ -1,6 +1,7 @@
-package com.s2mbe.model;
+package com.s2mbe.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.s2mbe.model.BasicEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;

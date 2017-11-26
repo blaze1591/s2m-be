@@ -2,13 +2,12 @@ package com.s2mbe.error.validation;
 
 import com.google.common.collect.ImmutableMap;
 import com.s2mbe.model.BasicEntity;
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Component

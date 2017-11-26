@@ -3,7 +3,7 @@ package com.s2mbe.controller;
 import com.s2mbe.error.InvalidPasswordException;
 import com.s2mbe.error.UserAlreadyExistsException;
 import com.s2mbe.error.UserNotFoundException;
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.User;
 import com.s2mbe.security.JwtAuthenticationRequest;
 import com.s2mbe.security.JwtAuthenticationResponse;
 import com.s2mbe.security.JwtUser;

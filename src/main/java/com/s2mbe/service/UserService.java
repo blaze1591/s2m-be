@@ -1,6 +1,6 @@
 package com.s2mbe.service;
 
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

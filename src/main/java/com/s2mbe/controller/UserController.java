@@ -1,6 +1,6 @@
 package com.s2mbe.controller;
 
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

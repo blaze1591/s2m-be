@@ -1,7 +1,7 @@
 package com.s2mbe.security;
 
-import com.s2mbe.model.Credentials;
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.Credentials;
+import com.s2mbe.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

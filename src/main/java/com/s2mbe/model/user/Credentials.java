@@ -1,4 +1,4 @@
-package com.s2mbe.model;
+package com.s2mbe.model.user;
 
 import lombok.Data;
 

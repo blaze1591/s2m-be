@@ -1,6 +1,6 @@
 package com.s2mbe.repository;
 
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

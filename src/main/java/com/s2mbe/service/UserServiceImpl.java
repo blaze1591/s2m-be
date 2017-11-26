@@ -2,8 +2,8 @@ package com.s2mbe.service;
 
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
-import com.s2mbe.model.Credentials;
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.Credentials;
+import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
 import com.s2mbe.service.mail.MailService;
 import org.apache.commons.lang3.StringUtils;

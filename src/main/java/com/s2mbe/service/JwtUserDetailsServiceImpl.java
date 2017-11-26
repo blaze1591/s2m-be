@@ -1,6 +1,6 @@
 package com.s2mbe.service;
 
-import com.s2mbe.model.User;
+import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
 import com.s2mbe.security.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
