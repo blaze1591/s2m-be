@@ -20,4 +20,6 @@ public interface UserService {
   User findByName(String name);
 
   User activateUser(String registrationToken);
+
+  boolean changePassword(String id, String newPassword);
 }

@@ -27,4 +27,12 @@ public class UserController {
         userServiceImpl.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PostMapping("/password/{id}")
+    public ResponseEntity changePassword(@PathVariable String id, @RequestAttribute String newPassword) {
+        if (userServiceImpl.changePassword(id, newPassword)) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+    }
 }
