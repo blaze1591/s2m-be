@@ -1,7 +1,8 @@
-package com.s2mbe.service.mail;
+package com.s2mbe.service.impl;
 
 import com.s2mbe.controller.AuthController;
 import com.s2mbe.model.user.User;
+import com.s2mbe.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

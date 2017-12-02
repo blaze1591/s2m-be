@@ -1,4 +1,4 @@
-package com.s2mbe.service;
+package com.s2mbe.service.impl;
 
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;

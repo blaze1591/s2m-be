@@ -1,4 +1,4 @@
-package com.s2mbe.service.mail;
+package com.s2mbe.service;
 
 import com.s2mbe.model.user.User;
 

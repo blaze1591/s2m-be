@@ -1,11 +1,12 @@
-package com.s2mbe.service;
+package com.s2mbe.service.impl;
 
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
 import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
-import com.s2mbe.service.mail.MailService;
+import com.s2mbe.service.UserService;
+import com.s2mbe.service.MailService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -9,7 +9,7 @@ import com.s2mbe.security.JwtAuthenticationResponse;
 import com.s2mbe.security.JwtUser;
 import com.s2mbe.security.JwtUtil;
 import com.s2mbe.service.UserService;
-import com.s2mbe.service.UserServiceImpl;
+import com.s2mbe.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

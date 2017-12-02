@@ -6,17 +6,43 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
 public class User extends BasicEntity {
+    private String photo;
+
+    // TODO: Create class of cathedra type, and fill and take all this data from it
+    private String institute;
+    private String faculty;
+    private String cathedra;
+
     private String firstName;
     private String middleName;
     private String lastName;
 
+    private String firstNameUa;
+    private String middleNameUa;
+    private String lastNameUa;
+
+    // TODO: make enums maybe
+    private List<String> academicTitles;
+    private List<String> scienceDegrees;
+
+    private String post;
+
     private String email;
     private String address;
     private String telephone;
+
+    private String orcid;
+    private String googleScholar;
+    private String bibtex;
+    private String researcherId;
+    private String scopus;
+    private String academia;
+    private String researchGate;
 
     private Date birthDate;
     private Date registrationDate;
