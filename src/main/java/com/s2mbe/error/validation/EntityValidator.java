@@ -37,7 +37,7 @@ public class EntityValidator {
 
     class UserValidator implements Validator<User> {
         @Override
-        public void validate(User user) throws Exception {
+        public void validate(User user) {
             if (user.getCredentials() == null) {
                 throw new IllegalArgumentException("Credentials must be specified with userName, password and role");
             }
@@ -52,12 +52,6 @@ public class EntityValidator {
             }
             if (user.getEmail() == null) {
                 throw new IllegalArgumentException("Email must be specified");
-            }
-            if (user.getFirstName() == null) {
-                throw new IllegalArgumentException("FirstName must be specified");
-            }
-            if (user.getLastName() == null) {
-                throw new IllegalArgumentException("LastName must be specified");
             }
         }
     }

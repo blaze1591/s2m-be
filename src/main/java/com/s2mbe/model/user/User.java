@@ -16,21 +16,15 @@ public class User extends BasicEntity {
     // TODO: Create class of cathedra type, and fill and take all this data from it
     private String institute;
     private String faculty;
-    private String cathedra;
+    private List<Cathedra> cathedras;
 
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String fioEng;
+    private String fioRu;
+    private String fioUa;
 
-    private String firstNameUa;
-    private String middleNameUa;
-    private String lastNameUa;
-
-    // TODO: make enums maybe
-    private List<String> academicTitles;
-    private List<String> scienceDegrees;
-
-    private String post;
+    // TODO: make enums maybe, or not
+    private String academicTitle;
+    private String scienceDegree;
 
     private String email;
     private String address;
@@ -63,14 +57,6 @@ public class User extends BasicEntity {
         return credentials;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
@@ -93,5 +79,9 @@ public class User extends BasicEntity {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getFioRu() {
+        return fioRu;
     }
 }
