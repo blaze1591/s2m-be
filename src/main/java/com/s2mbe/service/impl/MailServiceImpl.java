@@ -41,7 +41,7 @@ public class MailServiceImpl implements MailService {
         String registrationToken = UUID.randomUUID().toString().replace("-", "");
 
         user.setRegistrationToken(registrationToken);
-        return "Hi, " + user.getFioRu() +
+        return "Hi, " + user.getFirstName() +
                 "\nPlease click on the link below to proceed registration:\n" +
                 serverUrl + AuthController.ACTIVATE_URL + registrationToken;
     }

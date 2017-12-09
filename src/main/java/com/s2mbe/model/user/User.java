@@ -18,9 +18,17 @@ public class User extends BasicEntity {
     private String faculty;
     private List<Cathedra> cathedras;
 
-    private String fioEng;
-    private String fioRu;
-    private String fioUa;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+
+    private String firstNameUa;
+    private String middleNameUa;
+    private String lastNameUa;
+
+    private String firstNameRu;
+    private String middleNameRu;
+    private String lastNameRu;
 
     // TODO: make enums maybe, or not
     private String academicTitle;
@@ -81,7 +89,11 @@ public class User extends BasicEntity {
         this.active = active;
     }
 
-    public String getFioRu() {
-        return fioRu;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }
