@@ -1,4 +1,4 @@
-package com.s2mbe.security;
+package com.s2mbe.security.jwt;
 
 import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;

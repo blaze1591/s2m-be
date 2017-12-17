@@ -1,5 +1,7 @@
 package com.s2mbe.security;
 
+import com.s2mbe.security.jwt.JwtAuthenticationEntryPoint;
+import com.s2mbe.security.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -61,7 +63,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/test/**").permitAll()
-                .antMatchers("/unit/**").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity

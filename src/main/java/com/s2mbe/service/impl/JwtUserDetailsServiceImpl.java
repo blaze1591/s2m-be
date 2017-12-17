@@ -2,7 +2,7 @@ package com.s2mbe.service.impl;
 
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
-import com.s2mbe.security.JwtUserFactory;
+import com.s2mbe.security.jwt.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

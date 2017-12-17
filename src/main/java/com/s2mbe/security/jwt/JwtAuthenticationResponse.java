@@ -1,4 +1,4 @@
-package com.s2mbe.security;
+package com.s2mbe.security.jwt;
 
 import java.io.Serializable;
 

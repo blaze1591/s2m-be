@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Service
 public class ScienceUnitServiceImpl implements ScienceUnitService {
-    private final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final Map<String, Class> types = ImmutableMap.<String, Class> builder()
             .put("Book", Book.class)
             .put("Chapter", Chapter.class)

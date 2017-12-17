@@ -1,4 +1,4 @@
-package com.s2mbe.security;
+package com.s2mbe.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;

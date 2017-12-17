@@ -1,4 +1,4 @@
-package com.s2mbe.security;
+package com.s2mbe.security.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
