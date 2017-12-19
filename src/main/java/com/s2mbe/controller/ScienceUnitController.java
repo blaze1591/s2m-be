@@ -23,6 +23,11 @@ public class ScienceUnitController {
         return new ResponseEntity<>(scienceUnitService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ScienceUnit> showOne(@PathVariable String id) {
+        return ResponseEntity.ok(scienceUnitService.findOne(id));
+    }
+
     @PostMapping
     public ResponseEntity<ScienceUnit> save(@RequestBody Map<String, String> scienceUnitParams) {
         return new ResponseEntity<>(scienceUnitService.save(scienceUnitParams), HttpStatus.OK);
@@ -30,8 +35,13 @@ public class ScienceUnitController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ScienceUnit> update(@PathVariable String id, @RequestBody Map<String, String> scienceUnitParams) {
-        // TBD
-        return null;
+        return ResponseEntity.ok(scienceUnitService.update(id, scienceUnitParams));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable String id) {
+        scienceUnitService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }

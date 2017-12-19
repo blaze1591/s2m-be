@@ -35,9 +35,34 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     }
 
     @Override
+    public ScienceUnit findOne(String id) {
+        if (!scienceUnitRepository.exists(id)) {
+            throw new IllegalArgumentException("ScienceUnit with specified id, doesn't exist");
+        }
+        return scienceUnitRepository.findOne(id);
+    }
+
+    @Override
     public ScienceUnit save(Map<String,String> scienceUnitParams) {
         ScienceUnit scienceUnit = convertToPOJO(scienceUnitParams);
         return scienceUnitRepository.save(scienceUnit);
+    }
+
+    @Override
+    public ScienceUnit update(String id, Map<String, String> scienceUnitParams) {
+        if (!scienceUnitRepository.exists(id)) {
+            throw new IllegalArgumentException("ScienceUnit with specified id, doesn't exist");
+        }
+        ScienceUnit scienceUnit = convertToPOJO(scienceUnitParams);
+        return scienceUnitRepository.save(scienceUnit);
+    }
+
+    @Override
+    public void delete(String id) {
+        if (!scienceUnitRepository.exists(id)) {
+            throw new IllegalArgumentException("ScienceUnit with specified id, doesn't exist");
+        }
+        scienceUnitRepository.delete(id);
     }
 
     @Override
