@@ -22,6 +22,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity saveUser(@RequestBody User user) throws Exception {
+        userService.save(user);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteUser(@PathVariable("id") String id) {
         userService.delete(id);
