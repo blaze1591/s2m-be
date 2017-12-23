@@ -23,9 +23,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity saveUser(@RequestBody User user) throws Exception {
-        userService.save(user);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
+        user = userService.save(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/{id}")
