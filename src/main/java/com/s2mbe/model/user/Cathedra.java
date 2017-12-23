@@ -8,6 +8,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Cathedra {
     private String name;
-    private String shortName;
     private String post;
+    private boolean key;
 }
