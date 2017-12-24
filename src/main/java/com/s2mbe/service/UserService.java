@@ -17,6 +17,8 @@ public interface UserService {
 
   User findByEmail(String email);
 
+    User findByNameOrEmail(String userName, String email);
+
   User findByName(String name);
 
   User activateUser(String registrationToken);
