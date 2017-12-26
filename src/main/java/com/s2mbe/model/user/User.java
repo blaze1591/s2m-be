@@ -46,6 +46,9 @@ public class User extends BasicEntity {
     private String academia;
     private String researchGate;
 
+    private double hirshScholar;
+    private double hirshScopus;
+
     private Date birthDate;
     private Date registrationDate;
 
