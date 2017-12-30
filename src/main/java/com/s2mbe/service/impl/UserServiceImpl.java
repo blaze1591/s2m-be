@@ -1,5 +1,6 @@
 package com.s2mbe.service.impl;
 
+import com.s2mbe.error.UserAlreadyExistsException;
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
 import com.s2mbe.model.user.Credentials;
@@ -47,11 +48,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) throws Exception {
         entityValidator.validate(user);
+        Credentials credentials = user.getCredentials();
         if (!userRepository.exists(StringUtils.trimToEmpty(user.getId()))) {
+            if (this.findByNameOrEmail(credentials.getUserName(), user.getEmail()) != null) {
+                throw new UserAlreadyExistsException();
+            }
             user.setRegistrationDate(new Date());
-            Credentials credentials = user.getCredentials();
             credentials.setPassword(passwordEncoder().encode(credentials.getPassword()));
 //            mailService.sendRegistrationToken(user);
+        } else {
+            credentials.setPassword(userRepository.findOne(user.getId())
+                    .getCredentials()
+                    .getPassword());
         }
         return userRepository.save(user);
     }

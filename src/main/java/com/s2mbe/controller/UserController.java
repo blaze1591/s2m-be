@@ -1,7 +1,5 @@
 package com.s2mbe.controller;
 
-import com.s2mbe.error.UserAlreadyExistsException;
-import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +24,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
-        Credentials credentials = user.getCredentials();
-        if (userService.findByNameOrEmail(credentials.getUserName(), user.getEmail()) != null) {
-            throw new UserAlreadyExistsException();
-        }
         user = userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
