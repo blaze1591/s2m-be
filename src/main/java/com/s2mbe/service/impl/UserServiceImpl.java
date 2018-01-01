@@ -21,6 +21,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final String DEFAULT_PHOTO = "https://res.cloudinary.com/dp2ty4s0z/image/upload" +
+            "/w_200,h_200,c_crop,g_face,r_max/w_200/placeholder_jjhreo.jpg";
+
     private UserRepository userRepository;
     private EntityValidator entityValidator;
     private MailService mailService;
@@ -61,6 +64,7 @@ public class UserServiceImpl implements UserService {
                     .getCredentials()
                     .getPassword());
         }
+        user.setPhoto(DEFAULT_PHOTO);
         return userRepository.save(user);
     }
 

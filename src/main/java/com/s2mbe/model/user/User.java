@@ -46,8 +46,8 @@ public class User extends BasicEntity {
     private String academia;
     private String researchGate;
 
-    private double hirshScholar;
-    private double hirshScopus;
+    private List<HirshEntity> hirshScholar;
+    private List<HirshEntity> hirshScopus;
 
     private Date birthDate;
     private Date registrationDate;
@@ -98,5 +98,9 @@ public class User extends BasicEntity {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
