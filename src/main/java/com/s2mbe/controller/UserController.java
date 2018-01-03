@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("/password/{id}")
-    public ResponseEntity changePassword(@PathVariable String id, @RequestAttribute String newPassword) {
+    public ResponseEntity changePassword(@PathVariable String id, @RequestParam String newPassword) {
         if (userService.changePassword(id, newPassword)) {
             return ResponseEntity.ok().build();
         }
