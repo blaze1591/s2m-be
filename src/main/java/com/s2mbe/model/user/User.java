@@ -104,4 +104,8 @@ public class User extends BasicEntity {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public String getPhoto() {
+        return photo;
+    }
 }
