@@ -59,12 +59,15 @@ public class UserServiceImpl implements UserService {
             user.setRegistrationDate(new Date());
             credentials.setPassword(passwordEncoder().encode(credentials.getPassword()));
 //            mailService.sendRegistrationToken(user);
+            user.setPhoto(DEFAULT_PHOTO);
         } else {
             credentials.setPassword(userRepository.findOne(user.getId())
                     .getCredentials()
                     .getPassword());
+            if (user.getPhoto() == null) {
+                user.setPhoto(DEFAULT_PHOTO);
+            }
         }
-        user.setPhoto(DEFAULT_PHOTO);
         return userRepository.save(user);
     }
 
