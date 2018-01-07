@@ -15,7 +15,7 @@ public abstract class ScienceUnit extends BasicEntity {
     private String unitType;
     // TODO: Maybe not needed
     private String author;
-    private List<User> authors;
+    private List<User> users;
 
     public String getName() {
         return name;
@@ -49,12 +49,12 @@ public abstract class ScienceUnit extends BasicEntity {
         this.url = url;
     }
 
-    public List<User> getAuthors() {
-        return authors;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setAuthors(List<User> authors) {
-        this.authors = authors;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public String getUnitType() {
