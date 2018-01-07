@@ -43,13 +43,13 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     }
 
     @Override
-    public ScienceUnit save(Map<String,String> scienceUnitParams) {
+    public ScienceUnit save(Map<String,Object> scienceUnitParams) {
         ScienceUnit scienceUnit = convertToPOJO(scienceUnitParams);
         return scienceUnitRepository.save(scienceUnit);
     }
 
     @Override
-    public ScienceUnit update(String id, Map<String, String> scienceUnitParams) {
+    public ScienceUnit update(String id, Map<String, Object> scienceUnitParams) {
         if (!scienceUnitRepository.exists(id)) {
             throw new IllegalArgumentException("ScienceUnit with specified id, doesn't exist");
         }
@@ -71,8 +71,8 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     }
 
     @SuppressWarnings("unchecked")
-    private ScienceUnit convertToPOJO(Map<String, String> params) {
-        String unitType = params.get("unitType");
+    private ScienceUnit convertToPOJO(Map<String, Object> params) {
+        String unitType = (String) params.get("unitType");
         Class type = types.get(unitType);
         return (ScienceUnit) MAPPER.convertValue(params, type);
     }

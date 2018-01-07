@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface ScienceUnitService {
-    ScienceUnit save(Map<String, String> scienceUnitParams);
-    ScienceUnit update(String id, Map<String, String> scienceUnitParams);
+    ScienceUnit save(Map<String, Object> scienceUnitParams);
+    ScienceUnit update(String id, Map<String, Object> scienceUnitParams);
     void delete(String id);
     List<ScienceUnit> findAll();
     ScienceUnit findOne(String id);

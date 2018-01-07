@@ -29,12 +29,12 @@ public class ScienceUnitController {
     }
 
     @PostMapping
-    public ResponseEntity<ScienceUnit> save(@RequestBody Map<String, String> scienceUnitParams) {
+    public ResponseEntity<ScienceUnit> save(@RequestBody Map<String, Object> scienceUnitParams) {
         return new ResponseEntity<>(scienceUnitService.save(scienceUnitParams), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ScienceUnit> update(@PathVariable String id, @RequestBody Map<String, String> scienceUnitParams) {
+    public ResponseEntity<ScienceUnit> update(@PathVariable String id, @RequestBody Map<String, Object> scienceUnitParams) {
         return ResponseEntity.ok(scienceUnitService.update(id, scienceUnitParams));
     }
 
