@@ -44,4 +44,9 @@ public class ScienceUnitController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ScienceUnit>> showAllByUserId(@PathVariable String userId) {
+        return ResponseEntity.ok(scienceUnitService.findAllByUserId(userId));
+    }
+
 }

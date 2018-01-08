@@ -3,7 +3,9 @@ package com.s2mbe.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import com.s2mbe.model.science.*;
+import com.s2mbe.model.user.User;
 import com.s2mbe.repository.ScienceUnitRepository;
+import com.s2mbe.repository.UserRepository;
 import com.s2mbe.service.ScienceUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +29,11 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     @Autowired
     ScienceUnitRepository scienceUnitRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public List<ScienceUnit> findAll() {
-        System.out.println(scienceUnitRepository.findAll().get(0).getClass());
-        System.out.println(scienceUnitRepository.findAll().get(1).getClass());
         return scienceUnitRepository.findAll();
     }
 
@@ -68,6 +71,16 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     @Override
     public List<ScienceUnit> findAllByType(String unitType) {
         return null;
+    }
+
+    @Override
+    public List<ScienceUnit> findAllByUserId(String userId) {
+        if (!userRepository.exists(userId)) {
+            throw new IllegalArgumentException("ScienceUnits connected to specified userId, don't exist");
+        }
+        User user = new User();
+        user.setId(userId);
+        return scienceUnitRepository.findAllByUsersContains(user);
     }
 
     @SuppressWarnings("unchecked")

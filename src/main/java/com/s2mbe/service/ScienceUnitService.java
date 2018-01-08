@@ -12,4 +12,5 @@ public interface ScienceUnitService {
     List<ScienceUnit> findAll();
     ScienceUnit findOne(String id);
     List<ScienceUnit> findAllByType(String unitType);
+    List<ScienceUnit> findAllByUserId(String userId);
 }
