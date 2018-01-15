@@ -19,7 +19,6 @@ public class User extends BasicEntity {
     private List<Cathedra> cathedras;
 
     private String firstName;
-    private String middleName;
     private String lastName;
 
     private String firstNameUa;
