@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,12 @@ public class ScienceUnitController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<ScienceUnit>> showAllByUserId(@PathVariable String userId) {
         return ResponseEntity.ok(scienceUnitService.findAllByUserId(userId));
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity uploadBibtex(@RequestParam("file") MultipartFile bibtexFile) {
+        System.out.println(bibtexFile.getOriginalFilename());
+        return ResponseEntity.ok().build();
     }
 
 }
