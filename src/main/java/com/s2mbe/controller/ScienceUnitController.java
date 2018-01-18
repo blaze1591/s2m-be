@@ -1,6 +1,7 @@
 package com.s2mbe.controller;
 
 import com.s2mbe.model.science.ScienceUnit;
+import com.s2mbe.service.BibtexService;
 import com.s2mbe.service.ScienceUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ import java.util.Map;
 public class ScienceUnitController {
     @Autowired
     ScienceUnitService scienceUnitService;
+
+    @Autowired
+    BibtexService bibtexService;
 
     @GetMapping
     public ResponseEntity<List<ScienceUnit>> showAll() {
@@ -52,7 +56,7 @@ public class ScienceUnitController {
 
     @PostMapping("/upload")
     public ResponseEntity uploadBibtex(@RequestParam("file") MultipartFile bibtexFile) {
-        System.out.println(bibtexFile.getOriginalFilename());
+        bibtexService.parseBibtexFile(bibtexFile);
         return ResponseEntity.ok().build();
     }
 
