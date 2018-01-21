@@ -3,6 +3,7 @@ package com.s2mbe.model.science;
 import com.s2mbe.model.BasicEntity;
 import com.s2mbe.model.user.User;
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
@@ -13,7 +14,6 @@ public abstract class ScienceUnit extends BasicEntity {
     private String year;
     private String url;
     private String unitType;
-    // TODO: Maybe not needed
     private String author;
     private List<User> users;
 
@@ -71,5 +71,18 @@ public abstract class ScienceUnit extends BasicEntity {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .append("title", title)
+                .append("year", year)
+                .append("url", url)
+                .append("unitType", unitType)
+                .append("author", author)
+                .append("users", users)
+                .toString();
     }
 }

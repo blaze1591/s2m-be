@@ -55,9 +55,8 @@ public class ScienceUnitController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity uploadBibtex(@RequestParam("file") MultipartFile bibtexFile) {
-        bibtexService.parseBibtexFile(bibtexFile);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<ScienceUnit>> uploadBibtex(@RequestParam("file") MultipartFile bibtexFile) {
+        return ResponseEntity.ok(bibtexService.parseBibtexFile(bibtexFile));
     }
 
 }

@@ -1,6 +1,7 @@
 package com.s2mbe.model.science;
 
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
 
@@ -51,5 +52,17 @@ public class Journal extends ScienceUnit {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .appendSuper(super.toString())
+                .append("journal", journal)
+                .append("volume", volume)
+                .append("number", number)
+                .append("pages", pages)
+                .append("publisher", publisher)
+                .toString();
     }
 }

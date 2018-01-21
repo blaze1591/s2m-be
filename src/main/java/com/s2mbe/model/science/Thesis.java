@@ -1,6 +1,7 @@
 package com.s2mbe.model.science;
 
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
 
@@ -15,5 +16,13 @@ public class Thesis extends ScienceUnit {
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .appendSuper(super.toString())
+                .append("school", school)
+                .toString();
     }
 }
