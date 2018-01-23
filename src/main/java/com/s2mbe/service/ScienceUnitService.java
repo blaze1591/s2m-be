@@ -7,6 +7,7 @@ import java.util.Map;
 
 public interface ScienceUnitService {
     ScienceUnit save(Map<String, Object> scienceUnitParams);
+    boolean bulkSave(List<Map<String, Object>> listOfParams);
     ScienceUnit update(String id, Map<String, Object> scienceUnitParams);
     void delete(String id);
     List<ScienceUnit> findAll();

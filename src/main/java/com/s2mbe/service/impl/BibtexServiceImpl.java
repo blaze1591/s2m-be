@@ -86,7 +86,11 @@ public class BibtexServiceImpl implements BibtexService {
             }
             scienceUnitParams.put(key, value);
         });
-        return OBJECT_MAPPER.convertValue(scienceUnitParams, SCIENCE_UNIT_TYPES.get(entry.getType()));
+
+        Class<? extends ScienceUnit> scienceUnitType = SCIENCE_UNIT_TYPES.get(entry.getType());
+        scienceUnitParams.put("unitType", scienceUnitType.getSimpleName());
+
+        return OBJECT_MAPPER.convertValue(scienceUnitParams, scienceUnitType);
     }
 
     private boolean isValid(ScienceUnit scienceUnit) {

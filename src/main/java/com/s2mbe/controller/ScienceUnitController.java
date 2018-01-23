@@ -38,6 +38,12 @@ public class ScienceUnitController {
         return new ResponseEntity<>(scienceUnitService.save(scienceUnitParams), HttpStatus.OK);
     }
 
+    @PostMapping("/bulk")
+    public ResponseEntity bulkSave(@RequestBody List<Map<String, Object>> listOfParams) {
+        scienceUnitService.bulkSave(listOfParams);
+        return ResponseEntity.ok().build();
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ScienceUnit> update(@PathVariable String id, @RequestBody Map<String, Object> scienceUnitParams) {
         return ResponseEntity.ok(scienceUnitService.update(id, scienceUnitParams));

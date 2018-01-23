@@ -2,6 +2,7 @@ package com.s2mbe.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.s2mbe.model.science.*;
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.ScienceUnitRepository;
@@ -49,6 +50,15 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     public ScienceUnit save(Map<String,Object> scienceUnitParams) {
         ScienceUnit scienceUnit = convertToPOJO(scienceUnitParams);
         return scienceUnitRepository.save(scienceUnit);
+    }
+
+    @Override
+    public boolean bulkSave(List<Map<String, Object>> listOfParams) {
+        List<ScienceUnit> scienceUnits = Lists.newArrayList();
+        listOfParams.forEach(params -> scienceUnits.add(convertToPOJO(params)));
+
+        System.err.println(scienceUnits);
+        return true;
     }
 
     @Override
