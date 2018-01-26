@@ -87,7 +87,10 @@ public class BibtexServiceImpl implements BibtexService {
             scienceUnitParams.put(key, value);
         });
 
+        String name = scienceUnitParams.get("author") + " " + scienceUnitParams.get("year");
         Class<? extends ScienceUnit> scienceUnitType = SCIENCE_UNIT_TYPES.get(entry.getType());
+
+        scienceUnitParams.put("name", name);
         scienceUnitParams.put("unitType", scienceUnitType.getSimpleName());
 
         return OBJECT_MAPPER.convertValue(scienceUnitParams, scienceUnitType);
