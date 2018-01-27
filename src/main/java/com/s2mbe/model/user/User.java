@@ -46,8 +46,7 @@ public class User extends BasicEntity {
     private String researchGate;
     private String linkedIn;
 
-    private List<HirshEntity> hirshScholar;
-    private List<HirshEntity> hirshScopus;
+    private List<HirshEntity> hirshCollection;
 
     private Date birthDate;
     private Date registrationDate;

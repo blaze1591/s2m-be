@@ -8,6 +8,9 @@ import java.util.Date;
 @Data
 @Embeddable
 public class HirshEntity {
-    private double index;
+    private double indexScopus;
+    private double indexScholar;
     private Date indexDate;
+    private int citationCount;
+    private int docCount;
 }
