@@ -3,6 +3,7 @@ package com.s2mbe.service.impl;
 import com.s2mbe.error.UserAlreadyExistsException;
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
+import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
@@ -15,8 +16,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -100,6 +103,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByNameOrEmail(String userName, String email) {
         return userRepository.findByCredentialsUserNameOrEmail(userName, email);
+    }
+
+    @Override
+    public List<DashboardRow> findTop10Users() {
+        List<DashboardRow> users = userRepository.findAllBy();
+        users.sort(Comparator.comparingInt(DashboardRow::getValue).reversed());
+        return users.stream().limit(10L).collect(Collectors.toList());
     }
 
     @Override

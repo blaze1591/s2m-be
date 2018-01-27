@@ -1,5 +1,6 @@
 package com.s2mbe.service;
 
+import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.user.User;
 import org.springframework.stereotype.Service;
 
@@ -7,21 +8,23 @@ import java.util.List;
 
 @Service
 public interface UserService {
-  User save(User user) throws Exception;
+    User save(User user) throws Exception;
 
-  void delete(String id);
+    void delete(String id);
 
-  List<User> findAll();
+    List<User> findAll();
 
-  User findById(String id);
+    User findById(String id);
 
-  User findByEmail(String email);
+    User findByEmail(String email);
 
     User findByNameOrEmail(String userName, String email);
 
-  User findByName(String name);
+    List<DashboardRow> findTop10Users();
 
-  User activateUser(String registrationToken);
+    User findByName(String name);
 
-  boolean changePassword(String id, String newPassword);
+    User activateUser(String registrationToken);
+
+    boolean changePassword(String id, String newPassword);
 }

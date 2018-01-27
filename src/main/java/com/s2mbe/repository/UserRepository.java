@@ -1,8 +1,11 @@
 package com.s2mbe.repository;
 
+import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
@@ -13,4 +16,6 @@ public interface UserRepository extends MongoRepository<User, String> {
     User findByEmail(String email);
 
     User findByRegistrationToken(String registrationToken);
+
+    List<DashboardRow> findAllBy();
 }

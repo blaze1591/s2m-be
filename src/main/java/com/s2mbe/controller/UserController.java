@@ -1,5 +1,6 @@
 package com.s2mbe.controller;
 
+import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,12 @@ public class UserController {
     public ResponseEntity<List<User>> showAllUsers() {
         List<User> users = userService.findAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/topTenDashboard")
+    public ResponseEntity<List<DashboardRow>> findTop10ByCitations() {
+        List<DashboardRow> rows = userService.findTop10Users();
+        return new ResponseEntity<>(rows, HttpStatus.OK);
     }
 
     @PostMapping

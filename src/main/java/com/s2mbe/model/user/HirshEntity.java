@@ -13,4 +13,8 @@ public class HirshEntity {
     private Date indexDate;
     private int citationCount;
     private int docCount;
+
+    public int getCitationCount() {
+        return citationCount;
+    }
 }
