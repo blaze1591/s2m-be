@@ -1,5 +1,6 @@
 package com.s2mbe.controller;
 
+import com.s2mbe.model.BasicEntity;
 import com.s2mbe.model.science.ScienceUnit;
 import com.s2mbe.service.BibtexService;
 import com.s2mbe.service.ScienceUnitService;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @Controller
@@ -40,8 +42,10 @@ public class ScienceUnitController {
 
     @PostMapping("/bulk")
     public ResponseEntity bulkSave(@RequestBody List<Map<String, Object>> listOfParams) {
-        scienceUnitService.bulkSave(listOfParams);
-        return ResponseEntity.ok().build();
+        List<String> scienceUnitIds = scienceUnitService.bulkSave(listOfParams).stream()
+                .map(BasicEntity::getId)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(scienceUnitIds);
     }
 
     @PutMapping("/{id}")

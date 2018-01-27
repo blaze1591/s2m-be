@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ScienceUnitServiceImpl implements ScienceUnitService {
@@ -53,12 +54,18 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     }
 
     @Override
-    public boolean bulkSave(List<Map<String, Object>> listOfParams) {
+    public List<ScienceUnit> bulkSave(List<Map<String, Object>> listOfParams) {
         List<ScienceUnit> scienceUnits = Lists.newArrayList();
         listOfParams.forEach(params -> scienceUnits.add(convertToPOJO(params)));
 
-        System.err.println(scienceUnits);
-        return true;
+        List<ScienceUnit> filteredScienceUnits = scienceUnits.stream()
+                .filter(scienceUnit -> scienceUnitRepository.findOneByTitleAndYearAndUnitType(
+                        scienceUnit.getTitle(),
+                        scienceUnit.getYear(),
+                        scienceUnit.getUnitType()) == null)
+                .collect(Collectors.toList());
+
+        return scienceUnitRepository.save(filteredScienceUnits);
     }
 
     @Override

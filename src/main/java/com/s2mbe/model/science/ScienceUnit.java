@@ -4,10 +4,12 @@ import com.s2mbe.model.BasicEntity;
 import com.s2mbe.model.user.User;
 import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Data
+@Document(collection = "scienceUnit")
 public abstract class ScienceUnit extends BasicEntity {
     private String name;
     private String title;

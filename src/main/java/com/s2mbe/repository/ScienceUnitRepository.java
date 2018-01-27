@@ -9,4 +9,5 @@ import java.util.List;
 public interface ScienceUnitRepository extends MongoRepository<ScienceUnit, String> {
     List<ScienceUnit> findAllByUnitType(String unitType);
     List<ScienceUnit> findAllByUsersContains(User user);
+    ScienceUnit findOneByTitleAndYearAndUnitType(String title, String year, String unitType);
 }
