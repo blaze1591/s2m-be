@@ -40,9 +40,9 @@ public class ScienceUnitController {
         return new ResponseEntity<>(scienceUnitService.save(scienceUnitParams), HttpStatus.OK);
     }
 
-    @PostMapping("/bulk")
-    public ResponseEntity bulkSave(@RequestBody List<Map<String, Object>> listOfParams) {
-        List<String> scienceUnitIds = scienceUnitService.bulkSave(listOfParams).stream()
+    @PostMapping("/bulk/{userIds}")
+    public ResponseEntity bulkSave(@PathVariable List<String> userIds, @RequestBody List<Map<String, Object>> listOfParams) {
+        List<String> scienceUnitIds = scienceUnitService.bulkSave(userIds, listOfParams).stream()
                 .map(BasicEntity::getId)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(scienceUnitIds);

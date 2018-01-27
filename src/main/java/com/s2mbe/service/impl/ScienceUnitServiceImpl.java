@@ -54,16 +54,30 @@ public class ScienceUnitServiceImpl implements ScienceUnitService {
     }
 
     @Override
-    public List<ScienceUnit> bulkSave(List<Map<String, Object>> listOfParams) {
+    public List<ScienceUnit> bulkSave(List<String> userIds, List<Map<String, Object>> listOfParams) {
         List<ScienceUnit> scienceUnits = Lists.newArrayList();
-        listOfParams.forEach(params -> scienceUnits.add(convertToPOJO(params)));
+        listOfParams.forEach(params -> {
+            scienceUnits.add(convertToPOJO(params));
+        });
 
+//      Do not persist publications which already exists
         List<ScienceUnit> filteredScienceUnits = scienceUnits.stream()
                 .filter(scienceUnit -> scienceUnitRepository.findOneByTitleAndYearAndUnitType(
                         scienceUnit.getTitle(),
                         scienceUnit.getYear(),
                         scienceUnit.getUnitType()) == null)
                 .collect(Collectors.toList());
+
+//      Align publications to the users
+        filteredScienceUnits.forEach(scienceUnit -> {
+            List<User> users = Lists.newArrayList();
+            userIds.forEach(userId -> {
+                User user = new User();
+                user.setId(userId);
+                users.add(user);
+            });
+            scienceUnit.setUsers(users);
+        });
 
         return scienceUnitRepository.save(filteredScienceUnits);
     }
