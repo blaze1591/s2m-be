@@ -1,12 +1,13 @@
 package com.s2mbe.model.science;
 
+import com.querydsl.core.annotations.QueryEntity;
 import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Entity
+@QueryEntity
+@Document
 public class Other extends ScienceUnit {
     private String journal;
     private String number;

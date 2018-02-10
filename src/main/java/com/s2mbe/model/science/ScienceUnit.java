@@ -1,5 +1,6 @@
 package com.s2mbe.model.science;
 
+import com.querydsl.core.annotations.QueryEntity;
 import com.s2mbe.model.BasicEntity;
 import com.s2mbe.model.user.User;
 import lombok.Data;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Data
 @Document(collection = "scienceUnit")
+@QueryEntity
 public abstract class ScienceUnit extends BasicEntity {
     private String name;
     private String title;

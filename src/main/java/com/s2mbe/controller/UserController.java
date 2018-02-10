@@ -1,6 +1,7 @@
 package com.s2mbe.controller;
 
 import com.s2mbe.model.transfer.DashboardRow;
+import com.s2mbe.model.user.HirshEntity;
 import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
+        int sumCitCount = 0;
+        for (HirshEntity hEntity : user.getHirshCollection()) {
+            sumCitCount += hEntity.getCitationCount();
+        }
+        user.setSumCitCount(sumCitCount);
         user = userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }

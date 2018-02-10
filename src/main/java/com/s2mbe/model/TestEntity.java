@@ -1,12 +1,13 @@
 package com.s2mbe.model;
 
+import com.querydsl.core.annotations.QueryEntity;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Entity
+@QueryEntity
+@Document
 public class TestEntity {
     @Id
     private String id;

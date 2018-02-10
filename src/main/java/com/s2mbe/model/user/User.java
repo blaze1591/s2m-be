@@ -1,15 +1,17 @@
 package com.s2mbe.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.querydsl.core.annotations.QueryEntity;
 import com.s2mbe.model.BasicEntity;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity
+@QueryEntity
+@Document
 public class User extends BasicEntity {
     private String photo;
 
@@ -47,6 +49,7 @@ public class User extends BasicEntity {
     private String linkedIn;
 
     private List<HirshEntity> hirshCollection;
+    private int sumCitCount;
 
     private Date birthDate;
     private Date registrationDate;
@@ -105,5 +108,13 @@ public class User extends BasicEntity {
 
     public String getPhoto() {
         return photo;
+    }
+
+    public List<HirshEntity> getHirshCollection() {
+        return hirshCollection;
+    }
+
+    public void setSumCitCount(int sumCitCount) {
+        this.sumCitCount = sumCitCount;
     }
 }

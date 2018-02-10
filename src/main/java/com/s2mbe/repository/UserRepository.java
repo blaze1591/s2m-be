@@ -17,5 +17,5 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     User findByRegistrationToken(String registrationToken);
 
-    List<DashboardRow> findAllBy();
+    List<DashboardRow> findTop10ByOrderBySumCitCountDesc();
 }

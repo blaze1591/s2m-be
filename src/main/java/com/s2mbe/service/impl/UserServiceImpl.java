@@ -16,10 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -107,9 +105,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<DashboardRow> findTop10Users() {
-        List<DashboardRow> users = userRepository.findAllBy();
-        users.sort(Comparator.comparingInt(DashboardRow::getValue).reversed());
-        return users.stream().limit(10L).collect(Collectors.toList());
+        return userRepository.findTop10ByOrderBySumCitCountDesc();
     }
 
     @Override

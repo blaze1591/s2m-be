@@ -1,9 +1,5 @@
 package com.s2mbe.model.transfer;
 
-import com.s2mbe.model.user.HirshEntity;
-
-import java.util.List;
-
 public interface DashboardRow {
     String getPhoto();
 
@@ -13,17 +9,13 @@ public interface DashboardRow {
 
     String getLastNameUa();
 
-    List<HirshEntity> getHirshCollection();
+    int getSumCitCount();
 
     default String getName() {
         return getLastNameUa() + " " + getFirstNameUa() + " " + getMiddleNameUa();
     }
 
     default int getValue() {
-        int value = 0;
-        for (HirshEntity hEntity : getHirshCollection()) {
-            value += hEntity.getCitationCount();
-        }
-        return value;
+        return getSumCitCount();
     }
 }
