@@ -23,7 +23,7 @@ public interface UserService {
 
     List<DashboardRow> findTop10Users();
 
-    Map findInfoForScopusReport();
+    Map<String, Object> findInfoForScopusReport();
 
     User findByName(String name);
 

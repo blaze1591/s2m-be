@@ -43,4 +43,18 @@ public interface HirshProjection {
     }
 
     List<HirshEntity> getHirshCollection();
+
+    String getFirstNameUa();
+
+    String getMiddleNameUa();
+
+    String getLastNameUa();
+
+    String getScopus();
+
+    String getAcademia();
+
+    default String getName() {
+        return getLastNameUa() + " " + getFirstNameUa() + " " + getMiddleNameUa();
+    }
 }

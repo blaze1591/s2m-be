@@ -17,10 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -112,12 +109,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map findInfoForScopusReport() {
+    public Map<String, Object> findInfoForScopusReport() {
         List<HirshProjection> hirshProjs = userRepository.findListOfHirshProjections();
-        Map<Integer, Map<Integer, Map<String, Number>>> resultMap = new HashMap<>();
+        Map<Integer, Map<Integer, Map<String, Number>>> sumsForGraph = new HashMap<>();
+        List<Map<String, Object>> forEachUserList = new ArrayList<>();
         for (HirshProjection hProj : hirshProjs) {
-            HirshProjection.sumDataHelper(hProj.getHirshCollection(), resultMap);
+            Map<Integer, Map<Integer, Map<String, Number>>> sumsForUser = new HashMap<>();
+            Map<String, Object> feuMap = new HashMap<>();
+            feuMap.put("commonData", hProj);
+            HirshProjection.sumDataHelper(hProj.getHirshCollection(), sumsForUser);
+            feuMap.put("sums", sumsForUser);
+            forEachUserList.add(feuMap);
+            HirshProjection.sumDataHelper(hProj.getHirshCollection(), sumsForGraph);
         }
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("forGraph", sumsForGraph);
+        resultMap.put("forPDF", forEachUserList);
         return resultMap;
     }
 

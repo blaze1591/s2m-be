@@ -21,6 +21,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     List<DashboardRow> findTop10ByOrderBySumCitCountDesc();
 
-    @Query(value = "{}", fields = "{ hirshCollection : 1, _id : 0 }")
+    @Query(value = "{}")
     List<HirshProjection> findListOfHirshProjections();
 }

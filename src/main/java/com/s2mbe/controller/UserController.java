@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/scopusReport")
-    public ResponseEntity<Map> findInfoScopus() {
+    public ResponseEntity<Map<String, Object>> findInfoScopus() {
         return new ResponseEntity<>(userService.findInfoForScopusReport(), HttpStatus.OK);
     }
 
