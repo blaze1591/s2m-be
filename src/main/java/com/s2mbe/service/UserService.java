@@ -5,6 +5,7 @@ import com.s2mbe.model.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface UserService {
@@ -21,6 +22,8 @@ public interface UserService {
     User findByNameOrEmail(String userName, String email);
 
     List<DashboardRow> findTop10Users();
+
+    Map findInfoForScopusReport();
 
     User findByName(String name);
 

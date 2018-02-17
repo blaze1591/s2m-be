@@ -1,8 +1,10 @@
 package com.s2mbe.repository;
 
 import com.s2mbe.model.transfer.DashboardRow;
+import com.s2mbe.model.transfer.HirshProjection;
 import com.s2mbe.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +20,7 @@ public interface UserRepository extends MongoRepository<User, String> {
     User findByRegistrationToken(String registrationToken);
 
     List<DashboardRow> findTop10ByOrderBySumCitCountDesc();
+
+    @Query(value = "{}", fields = "{ hirshCollection : 1, _id : 0 }")
+    List<HirshProjection> findListOfHirshProjections();
 }

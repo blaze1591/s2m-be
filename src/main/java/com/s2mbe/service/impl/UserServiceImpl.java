@@ -4,6 +4,7 @@ import com.s2mbe.error.UserAlreadyExistsException;
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
 import com.s2mbe.model.transfer.DashboardRow;
+import com.s2mbe.model.transfer.HirshProjection;
 import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
@@ -17,7 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -106,6 +109,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<DashboardRow> findTop10Users() {
         return userRepository.findTop10ByOrderBySumCitCountDesc();
+    }
+
+    @Override
+    public Map findInfoForScopusReport() {
+        List<HirshProjection> hirshProjs = userRepository.findListOfHirshProjections();
+        Map<Integer, Map<Integer, Map<String, Number>>> resultMap = new HashMap<>();
+        for (HirshProjection hProj : hirshProjs) {
+            HirshProjection.sumDataHelper(hProj.getHirshCollection(), resultMap);
+        }
+        return resultMap;
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -28,6 +29,11 @@ public class UserController {
     public ResponseEntity<List<DashboardRow>> findTop10ByCitations() {
         List<DashboardRow> rows = userService.findTop10Users();
         return new ResponseEntity<>(rows, HttpStatus.OK);
+    }
+
+    @GetMapping("/scopusReport")
+    public ResponseEntity<Map> findInfoScopus() {
+        return new ResponseEntity<>(userService.findInfoForScopusReport(), HttpStatus.OK);
     }
 
     @PostMapping
