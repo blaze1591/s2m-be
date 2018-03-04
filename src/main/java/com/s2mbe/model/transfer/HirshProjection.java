@@ -1,6 +1,6 @@
 package com.s2mbe.model.transfer;
 
-import com.s2mbe.model.user.HirshEntity;
+import com.s2mbe.model.hirsh.HirshEntity;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -11,7 +11,7 @@ import java.util.Map;
 public interface HirshProjection {
     static void sumDataHelper(List<HirshEntity> hirshEntities, Map<Integer, Map<Integer, Map<String, Number>>> data) {
         for (HirshEntity he : hirshEntities) {
-            LocalDate indexDate = he.getIndexDate().toInstant()
+            LocalDate indexDate = he.getDate().toInstant()
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate();
             if (data.containsKey(indexDate.getYear())) {
@@ -28,16 +28,18 @@ public interface HirshProjection {
     static void dealWithMonthesHelper(HirshEntity he, LocalDate indexDate, Map<Integer, Map<String, Number>> yearData) {
         if (yearData.containsKey(indexDate.getMonthValue())) {
             Map<String, Number> monthData = yearData.get(indexDate.getMonthValue());
-            monthData.put("indexScopus", monthData.get("indexScopus").doubleValue() + he.getIndexScopus());
-            monthData.put("indexScholar", monthData.get("indexScholar").doubleValue() + he.getIndexScholar());
+            // TODO: fix it, it's on a different POJOs now
+            monthData.put("indexScopus", monthData.get("indexScopus").doubleValue() + he.getIndex());
+            monthData.put("indexScholar", monthData.get("indexScholar").doubleValue() + he.getIndex());
             monthData.put("citationCount", monthData.get("citationCount").intValue() + he.getCitationCount());
-            monthData.put("docCount", monthData.get("docCount").intValue() + he.getDocCount());
+            monthData.put("docCount", monthData.get("docCount").intValue() + he.getDocumentCount());
         } else {
             Map<String, Number> monthData = new HashMap<>();
-            monthData.put("indexScopus", he.getIndexScopus());
-            monthData.put("indexScholar", he.getIndexScholar());
+            // TODO: fix it, it's on a different POJOs now
+            monthData.put("indexScopus", he.getIndex());
+            monthData.put("indexScholar", he.getIndex());
             monthData.put("citationCount", he.getCitationCount());
-            monthData.put("docCount", he.getDocCount());
+            monthData.put("docCount", he.getDocumentCount());
             yearData.put(indexDate.getMonthValue(), monthData);
         }
     }

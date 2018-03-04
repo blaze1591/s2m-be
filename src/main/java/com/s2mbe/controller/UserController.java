@@ -1,7 +1,7 @@
 package com.s2mbe.controller;
 
+import com.s2mbe.model.hirsh.HirshEntity;
 import com.s2mbe.model.transfer.DashboardRow;
-import com.s2mbe.model.user.HirshEntity;
 import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/topTenDashboard")
-    public ResponseEntity<List<DashboardRow>> findTop10ByCitations() {
-        List<DashboardRow> rows = userService.findTop10Users();
+    public ResponseEntity<List<DashboardRow>> findTop10ByScopusCitations() {
+        List<DashboardRow> rows = userService.findTop10ScopusUsers();
         return new ResponseEntity<>(rows, HttpStatus.OK);
     }
 
@@ -38,11 +38,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
-        int sumCitCount = 0;
-        for (HirshEntity hEntity : user.getHirshCollection()) {
-            sumCitCount += hEntity.getCitationCount();
-        }
-        user.setSumCitCount(sumCitCount);
+        System.err.println(user.getScopusEntities());
+        System.err.println(user.getGoogleScholarEntities());
+        System.err.println(user.getWebOfScienceEntities());
+
+        user.setScopusCitationSumm(summHirshCitationCounts(user.getScopusEntities()));
+        user.setGoogleScholarCitationSumm(summHirshCitationCounts(user.getGoogleScholarEntities()));
+        user.setWebOfScienceCitationSumm(summHirshCitationCounts(user.getWebOfScienceEntities()));
+
         user = userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
@@ -64,5 +67,13 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> showUser(@PathVariable String id) {
         return ResponseEntity.ok(userService.findById(id));
+    }
+
+    private int summHirshCitationCounts(List<? extends HirshEntity> hirshEntities) {
+        final int[] citationCountSumm = {0};
+        hirshEntities.forEach(hirshEntity ->
+            citationCountSumm[0] += hirshEntity.getCitationCount()
+        );
+        return citationCountSumm[0];
     }
 }

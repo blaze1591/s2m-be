@@ -19,7 +19,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     User findByRegistrationToken(String registrationToken);
 
-    List<DashboardRow> findTop10ByOrderBySumCitCountDesc();
+    List<DashboardRow> findTop10ByOrderByScopusCitationSummDesc();
 
     @Query(value = "{}")
     List<HirshProjection> findListOfHirshProjections();

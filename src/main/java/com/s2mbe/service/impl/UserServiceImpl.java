@@ -104,8 +104,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<DashboardRow> findTop10Users() {
-        return userRepository.findTop10ByOrderBySumCitCountDesc();
+    public List<DashboardRow> findTop10ScopusUsers() {
+        return userRepository.findTop10ByOrderByScopusCitationSummDesc();
     }
 
     @Override

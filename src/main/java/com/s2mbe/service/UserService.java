@@ -21,7 +21,7 @@ public interface UserService {
 
     User findByNameOrEmail(String userName, String email);
 
-    List<DashboardRow> findTop10Users();
+    List<DashboardRow> findTop10ScopusUsers();
 
     Map<String, Object> findInfoForScopusReport();
 

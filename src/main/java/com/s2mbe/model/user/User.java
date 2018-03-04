@@ -3,7 +3,11 @@ package com.s2mbe.model.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryEntity;
 import com.s2mbe.model.BasicEntity;
+import com.s2mbe.model.hirsh.GoogleScholarEntity;
+import com.s2mbe.model.hirsh.ScopusEntity;
+import com.s2mbe.model.hirsh.WebOfScienceEntity;
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -48,8 +52,12 @@ public class User extends BasicEntity {
     private String researchGate;
     private String linkedIn;
 
-    private List<HirshEntity> hirshCollection;
-    private int sumCitCount;
+    private List<ScopusEntity> scopusEntities;
+    private int scopusCitationSumm;
+    private List<GoogleScholarEntity> googleScholarEntities;
+    private int googleScholarCitationSumm;
+    private List<WebOfScienceEntity> webOfScienceEntities;
+    private int webOfScienceCitationSumm;
 
     private Date birthDate;
     private Date registrationDate;
@@ -110,11 +118,70 @@ public class User extends BasicEntity {
         return photo;
     }
 
-    public List<HirshEntity> getHirshCollection() {
-        return hirshCollection;
+    public List<ScopusEntity> getScopusEntities() {
+        return scopusEntities;
     }
 
-    public void setSumCitCount(int sumCitCount) {
-        this.sumCitCount = sumCitCount;
+    public List<GoogleScholarEntity> getGoogleScholarEntities() {
+        return googleScholarEntities;
+    }
+
+    public List<WebOfScienceEntity> getWebOfScienceEntities() {
+        return webOfScienceEntities;
+    }
+
+    public void setScopusCitationSumm(int scopusCitationSumm) {
+        this.scopusCitationSumm = scopusCitationSumm;
+    }
+
+    public void setGoogleScholarCitationSumm(int googleScholarCitationSumm) {
+        this.googleScholarCitationSumm = googleScholarCitationSumm;
+    }
+
+    public void setWebOfScienceCitationSumm(int webOfScienceCitationSumm) {
+        this.webOfScienceCitationSumm = webOfScienceCitationSumm;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("photo", photo)
+                .append("institute", institute)
+                .append("faculty", faculty)
+                .append("cathedras", cathedras)
+                .append("firstName", firstName)
+                .append("lastName", lastName)
+                .append("firstNameUa", firstNameUa)
+                .append("middleNameUa", middleNameUa)
+                .append("lastNameUa", lastNameUa)
+                .append("firstNameRu", firstNameRu)
+                .append("middleNameRu", middleNameRu)
+                .append("lastNameRu", lastNameRu)
+                .append("academicTitle", academicTitle)
+                .append("scienceDegree", scienceDegree)
+                .append("email", email)
+                .append("address", address)
+                .append("telephone", telephone)
+                .append("orcid", orcid)
+                .append("googleScholar", googleScholar)
+                .append("bibtex", bibtex)
+                .append("researcherId", researcherId)
+                .append("scopus", scopus)
+                .append("academia", academia)
+                .append("researchGate", researchGate)
+                .append("linkedIn", linkedIn)
+                .append("scopusEntities", scopusEntities)
+                .append("scopusCitationSumm", scopusCitationSumm)
+                .append("googleScholarEntities", googleScholarEntities)
+                .append("googleScholarCitationSumm", googleScholarCitationSumm)
+                .append("webOfScienceEntities", webOfScienceEntities)
+                .append("webOfScienceCitationSumm", webOfScienceCitationSumm)
+                .append("birthDate", birthDate)
+                .append("registrationDate", registrationDate)
+                .append("credentials", credentials)
+                .append("registrationToken", registrationToken)
+                .append("active", active)
+                .append("deleted", deleted)
+                .toString();
     }
 }
