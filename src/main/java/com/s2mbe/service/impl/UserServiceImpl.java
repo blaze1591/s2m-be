@@ -117,10 +117,10 @@ public class UserServiceImpl implements UserService {
             Map<Integer, Map<Integer, Map<String, Number>>> sumsForUser = new HashMap<>();
             Map<String, Object> feuMap = new HashMap<>();
             feuMap.put("commonData", hProj);
-            HirshProjection.sumDataHelper(hProj.getHirshCollection(), sumsForUser);
+            HirshProjection.sumDataHelper(hProj.getScopusEntities(), sumsForUser);
             feuMap.put("sums", sumsForUser);
             forEachUserList.add(feuMap);
-            HirshProjection.sumDataHelper(hProj.getHirshCollection(), sumsForGraph);
+            HirshProjection.sumDataHelper(hProj.getScopusEntities(), sumsForGraph);
         }
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("forGraph", sumsForGraph);
