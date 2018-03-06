@@ -48,7 +48,7 @@ public class User extends BasicEntity {
     private String bibtex;
     private String researcherId;
     private String scopus;
-    private String academia;
+    private String academia = "ОНАХТ";
     private String researchGate;
     private String linkedIn;
 
