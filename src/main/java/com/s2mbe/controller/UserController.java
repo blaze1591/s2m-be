@@ -2,6 +2,7 @@ package com.s2mbe.controller;
 
 import com.s2mbe.model.hirsh.HirshEntity;
 import com.s2mbe.model.transfer.DashboardRow;
+import com.s2mbe.model.transfer.UserReportDTO;
 import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody User user) throws Exception {
-        System.err.println(user.getScopusEntities());
-        System.err.println(user.getGoogleScholarEntities());
-        System.err.println(user.getWebOfScienceEntities());
-
         user.setScopusCitationSumm(summHirshCitationCounts(user.getScopusEntities()));
         user.setGoogleScholarCitationSumm(summHirshCitationCounts(user.getGoogleScholarEntities()));
         user.setWebOfScienceCitationSumm(summHirshCitationCounts(user.getWebOfScienceEntities()));
@@ -75,5 +72,11 @@ public class UserController {
             citationCountSumm[0] += hirshEntity.getCitationCount()
         );
         return citationCountSumm[0];
+    }
+
+    @GetMapping("/report/cathedral/{cathedraName}")
+    public ResponseEntity<List<UserReportDTO>> findDataForCathedral(@PathVariable String cathedraName) {
+        System.err.println(cathedraName);
+        return ResponseEntity.ok(userService.findDataForCathedraReport(cathedraName));
     }
 }

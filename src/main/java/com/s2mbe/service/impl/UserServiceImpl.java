@@ -1,10 +1,15 @@
 package com.s2mbe.service.impl;
 
+import com.google.common.collect.Lists;
 import com.s2mbe.error.UserAlreadyExistsException;
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
+import com.s2mbe.model.hirsh.GoogleScholarEntity;
+import com.s2mbe.model.hirsh.HirshEntity;
 import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.transfer.HirshProjection;
+import com.s2mbe.model.transfer.UserReportDTO;
+import com.s2mbe.model.user.Cathedra;
 import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;
 import com.s2mbe.repository.UserRepository;
@@ -174,5 +179,50 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user) != null;
     }
 
+    @Override
+    public List<UserReportDTO> findDataForCathedraReport(String cathedraName) {
+        List<User> users = userRepository.findAllByCathedraName(cathedraName);
+        return transformUsersToDTOs(users, cathedraName);
+    }
 
+    private List<UserReportDTO> transformUsersToDTOs(List<User> users, String cathedraName) {
+        List<UserReportDTO> userDTOs = Lists.newArrayList();
+        users.forEach(user -> {
+            UserReportDTO userDTO = new UserReportDTO();
+
+            userDTO.setName(user.getFirstName()
+                    + " " + user.getLastName());
+
+            userDTO.setNameUa(user.getLastNameUa()
+                    + " " + user.getFirstNameUa()
+                    + " " + user.getMiddleNameUa());
+
+            userDTO.setTitle(getCathedraTitle(user, cathedraName));
+
+            userDTO.setGoogleScholarLink(user.getGoogleScholar());
+            userDTO.setOrsidLink(user.getOrcid());
+            userDTO.setResearcherLink(user.getResearcherId());
+
+            GoogleScholarEntity entity = (GoogleScholarEntity) getActualHirshEntity(user.getGoogleScholarEntities());
+            userDTO.setGoogleScholarHIndex(String.valueOf(entity.getIndex()));
+            userDTO.setGoogleScholarDocumentCount(String.valueOf(entity.getDocumentCount()));
+
+            userDTOs.add(userDTO);
+        });
+        return userDTOs;
+    }
+
+    private String getCathedraTitle(User user, String cathedraName) {
+        return user.getCathedras().stream()
+                .filter(cathedra -> cathedra.getName().equals(cathedraName))
+                .findFirst()
+                .map(Cathedra::getPost)
+                .orElse(null);
+    }
+
+    private HirshEntity getActualHirshEntity(List<? extends HirshEntity> hirshEntities) {
+        return hirshEntities.stream()
+                .max(Comparator.comparing(HirshEntity::getDate))
+                .orElse(null);
+    }
 }

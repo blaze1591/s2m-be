@@ -2,6 +2,7 @@ package com.s2mbe.repository;
 
 import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.transfer.HirshProjection;
+import com.s2mbe.model.user.Cathedra;
 import com.s2mbe.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -23,4 +24,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     @Query(value = "{}")
     List<HirshProjection> findListOfHirshProjections();
+
+    @Query(value = "{cathedras.name: ?0}")
+    List<User> findAllByCathedraName(String name);
 }

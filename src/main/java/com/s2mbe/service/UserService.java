@@ -1,6 +1,7 @@
 package com.s2mbe.service;
 
 import com.s2mbe.model.transfer.DashboardRow;
+import com.s2mbe.model.transfer.UserReportDTO;
 import com.s2mbe.model.user.User;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +31,6 @@ public interface UserService {
     User activateUser(String registrationToken);
 
     boolean changePassword(String id, String newPassword);
+
+    List<UserReportDTO> findDataForCathedraReport(String cathedraName);
 }

@@ -70,20 +70,276 @@ public class User extends BasicEntity {
 
     private Boolean deleted;
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getInstitute() {
+        return institute;
+    }
+
+    public void setInstitute(String institute) {
+        this.institute = institute;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public List<Cathedra> getCathedras() {
+        return cathedras;
+    }
+
+    public void setCathedras(List<Cathedra> cathedras) {
+        this.cathedras = cathedras;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstNameUa() {
+        return firstNameUa;
+    }
+
+    public void setFirstNameUa(String firstNameUa) {
+        this.firstNameUa = firstNameUa;
+    }
+
+    public String getMiddleNameUa() {
+        return middleNameUa;
+    }
+
+    public void setMiddleNameUa(String middleNameUa) {
+        this.middleNameUa = middleNameUa;
+    }
+
+    public String getLastNameUa() {
+        return lastNameUa;
+    }
+
+    public void setLastNameUa(String lastNameUa) {
+        this.lastNameUa = lastNameUa;
+    }
+
+    public String getFirstNameRu() {
+        return firstNameRu;
+    }
+
+    public void setFirstNameRu(String firstNameRu) {
+        this.firstNameRu = firstNameRu;
+    }
+
+    public String getMiddleNameRu() {
+        return middleNameRu;
+    }
+
+    public void setMiddleNameRu(String middleNameRu) {
+        this.middleNameRu = middleNameRu;
+    }
+
+    public String getLastNameRu() {
+        return lastNameRu;
+    }
+
+    public void setLastNameRu(String lastNameRu) {
+        this.lastNameRu = lastNameRu;
+    }
+
+    public String getAcademicTitle() {
+        return academicTitle;
+    }
+
+    public void setAcademicTitle(String academicTitle) {
+        this.academicTitle = academicTitle;
+    }
+
+    public String getScienceDegree() {
+        return scienceDegree;
+    }
+
+    public void setScienceDegree(String scienceDegree) {
+        this.scienceDegree = scienceDegree;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public Credentials getCredentials() {
-        return credentials;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getOrcid() {
+        return orcid;
+    }
+
+    public void setOrcid(String orcid) {
+        this.orcid = orcid;
+    }
+
+    public String getGoogleScholar() {
+        return googleScholar;
+    }
+
+    public void setGoogleScholar(String googleScholar) {
+        this.googleScholar = googleScholar;
+    }
+
+    public String getBibtex() {
+        return bibtex;
+    }
+
+    public void setBibtex(String bibtex) {
+        this.bibtex = bibtex;
+    }
+
+    public String getResearcherId() {
+        return researcherId;
+    }
+
+    public void setResearcherId(String researcherId) {
+        this.researcherId = researcherId;
+    }
+
+    public String getScopus() {
+        return scopus;
+    }
+
+    public void setScopus(String scopus) {
+        this.scopus = scopus;
+    }
+
+    public String getAcademia() {
+        return academia;
+    }
+
+    public void setAcademia(String academia) {
+        this.academia = academia;
+    }
+
+    public String getResearchGate() {
+        return researchGate;
+    }
+
+    public void setResearchGate(String researchGate) {
+        this.researchGate = researchGate;
+    }
+
+    public String getLinkedIn() {
+        return linkedIn;
+    }
+
+    public void setLinkedIn(String linkedIn) {
+        this.linkedIn = linkedIn;
+    }
+
+    public List<ScopusEntity> getScopusEntities() {
+        return scopusEntities;
+    }
+
+    public void setScopusEntities(List<ScopusEntity> scopusEntities) {
+        this.scopusEntities = scopusEntities;
+    }
+
+    public int getScopusCitationSumm() {
+        return scopusCitationSumm;
+    }
+
+    public void setScopusCitationSumm(int scopusCitationSumm) {
+        this.scopusCitationSumm = scopusCitationSumm;
+    }
+
+    public List<GoogleScholarEntity> getGoogleScholarEntities() {
+        return googleScholarEntities;
+    }
+
+    public void setGoogleScholarEntities(List<GoogleScholarEntity> googleScholarEntities) {
+        this.googleScholarEntities = googleScholarEntities;
+    }
+
+    public int getGoogleScholarCitationSumm() {
+        return googleScholarCitationSumm;
+    }
+
+    public void setGoogleScholarCitationSumm(int googleScholarCitationSumm) {
+        this.googleScholarCitationSumm = googleScholarCitationSumm;
+    }
+
+    public List<WebOfScienceEntity> getWebOfScienceEntities() {
+        return webOfScienceEntities;
+    }
+
+    public void setWebOfScienceEntities(List<WebOfScienceEntity> webOfScienceEntities) {
+        this.webOfScienceEntities = webOfScienceEntities;
+    }
+
+    public int getWebOfScienceCitationSumm() {
+        return webOfScienceCitationSumm;
+    }
+
+    public void setWebOfScienceCitationSumm(int webOfScienceCitationSumm) {
+        this.webOfScienceCitationSumm = webOfScienceCitationSumm;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
     }
 
     public String getRegistrationToken() {
@@ -94,7 +350,7 @@ public class User extends BasicEntity {
         this.registrationToken = registrationToken;
     }
 
-    public Boolean isActive() {
+    public Boolean getActive() {
         return active;
     }
 
@@ -102,44 +358,12 @@ public class User extends BasicEntity {
         this.active = active;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Boolean getDeleted() {
+        return deleted;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public List<ScopusEntity> getScopusEntities() {
-        return scopusEntities;
-    }
-
-    public List<GoogleScholarEntity> getGoogleScholarEntities() {
-        return googleScholarEntities;
-    }
-
-    public List<WebOfScienceEntity> getWebOfScienceEntities() {
-        return webOfScienceEntities;
-    }
-
-    public void setScopusCitationSumm(int scopusCitationSumm) {
-        this.scopusCitationSumm = scopusCitationSumm;
-    }
-
-    public void setGoogleScholarCitationSumm(int googleScholarCitationSumm) {
-        this.googleScholarCitationSumm = googleScholarCitationSumm;
-    }
-
-    public void setWebOfScienceCitationSumm(int webOfScienceCitationSumm) {
-        this.webOfScienceCitationSumm = webOfScienceCitationSumm;
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
