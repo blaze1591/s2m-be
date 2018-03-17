@@ -23,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -128,9 +129,25 @@ public class UserServiceImpl implements UserService {
             HirshProjection.sumDataHelper(hProj.getScopusEntities(), sumsForGraph);
         }
         Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("dropdownOptions", generateOptionsForScopusDrop(sumsForGraph.keySet()));
         resultMap.put("forGraph", sumsForGraph);
         resultMap.put("forPDF", forEachUserList);
         return resultMap;
+    }
+
+    private List<Map<String, Object>> generateOptionsForScopusDrop(Set<Integer> years) {
+        List<Integer> sortedYears = years.stream().sorted().collect(Collectors.toList());
+        List<Map<String, Object>> options = new ArrayList<>();
+        if (sortedYears.size() >= 3) {
+            appendYears(sortedYears);
+            for (int i = 0; i < sortedYears.size(); i += 3) {
+                Map<String, Object> option = new HashMap<>();
+                option.put("begin", sortedYears.get(i));
+                option.put("end", sortedYears.get(i + 2));
+                options.add(option);
+            }
+        }
+        return options;
     }
 
     @Override
@@ -224,5 +241,12 @@ public class UserServiceImpl implements UserService {
         return hirshEntities.stream()
                 .max(Comparator.comparing(HirshEntity::getDate))
                 .orElse(null);
+    }
+
+    private void appendYears(List<Integer> sortedYears) {
+        if (sortedYears.size() % 3 != 0) {
+            sortedYears.add(0, sortedYears.get(0) - 1);
+            appendYears(sortedYears);
+        }
     }
 }

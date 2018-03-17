@@ -67,7 +67,7 @@ public class UserController {
     }
 
     private int summHirshCitationCounts(List<? extends HirshEntity> hirshEntities) {
-        final int[] citationCountSumm = {0};
+        int[] citationCountSumm = {0};
         hirshEntities.forEach(hirshEntity ->
             citationCountSumm[0] += hirshEntity.getCitationCount()
         );
