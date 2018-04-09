@@ -13,7 +13,9 @@ import java.util.List;
 @Document(collection = "scienceUnit")
 @QueryEntity
 public abstract class ScienceUnit extends BasicEntity {
+    @Deprecated
     private String name;
+
     private String title;
     private String year;
     private String url;
@@ -21,10 +23,12 @@ public abstract class ScienceUnit extends BasicEntity {
     private String author;
     private List<User> users;
 
+    @Deprecated
     public String getName() {
         return name;
     }
 
+    @Deprecated
     public void setName(String name) {
         this.name = name;
     }

@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.s2mbe.error.UserAlreadyExistsException;
 import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
-import com.s2mbe.model.hirsh.GoogleScholarEntity;
 import com.s2mbe.model.hirsh.HirshEntity;
 import com.s2mbe.model.hirsh.ScopusEntity;
 import com.s2mbe.model.transfer.DashboardRow;

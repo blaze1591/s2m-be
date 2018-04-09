@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @QueryEntity
-@Document
+@Document(collection = "scienceUnit")
 public class Journal extends ScienceUnit {
     private String journal;
     private String volume;
