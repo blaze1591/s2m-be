@@ -9,8 +9,8 @@ public class UserReportDTO {
     private String googleScholarLink;
     private String orsidLink;
     private String researcherLink;
-    private String googleScholarHIndex;
-    private String googleScholarDocumentCount;
+    private String scopusHIndex;
+    private String scopusDocumentCount;
 
     public String getName() {
         return name;
@@ -52,28 +52,28 @@ public class UserReportDTO {
         this.researcherLink = researcherLink;
     }
 
-    public String getGoogleScholarHIndex() {
-        return googleScholarHIndex;
-    }
-
-    public void setGoogleScholarHIndex(String googleScholarHIndex) {
-        this.googleScholarHIndex = googleScholarHIndex;
-    }
-
-    public String getGoogleScholarDocumentCount() {
-        return googleScholarDocumentCount;
-    }
-
-    public void setGoogleScholarDocumentCount(String googleScholarDocumentCount) {
-        this.googleScholarDocumentCount = googleScholarDocumentCount;
-    }
-
     public String getNameUa() {
         return nameUa;
     }
 
     public void setNameUa(String nameUa) {
         this.nameUa = nameUa;
+    }
+
+    public String getScopusHIndex() {
+        return scopusHIndex;
+    }
+
+    public void setScopusHIndex(String scopusHIndex) {
+        this.scopusHIndex = scopusHIndex;
+    }
+
+    public String getScopusDocumentCount() {
+        return scopusDocumentCount;
+    }
+
+    public void setScopusDocumentCount(String scopusDocumentCount) {
+        this.scopusDocumentCount = scopusDocumentCount;
     }
 
     @Override
@@ -84,8 +84,8 @@ public class UserReportDTO {
                 .append("googleScholarLink", googleScholarLink)
                 .append("orsidLink", orsidLink)
                 .append("researcherLink", researcherLink)
-                .append("googleScholarHIndex", googleScholarHIndex)
-                .append("googleScholarDocumentCount", googleScholarDocumentCount)
+                .append("scopusHIndex", scopusHIndex)
+                .append("scopusDocumentCount", scopusDocumentCount)
                 .toString();
     }
 }

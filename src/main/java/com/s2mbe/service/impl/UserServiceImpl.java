@@ -6,6 +6,7 @@ import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
 import com.s2mbe.model.hirsh.GoogleScholarEntity;
 import com.s2mbe.model.hirsh.HirshEntity;
+import com.s2mbe.model.hirsh.ScopusEntity;
 import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.transfer.HirshProjection;
 import com.s2mbe.model.transfer.UserReportDTO;
@@ -220,9 +221,9 @@ public class UserServiceImpl implements UserService {
             userDTO.setOrsidLink(user.getOrcid());
             userDTO.setResearcherLink(user.getResearcherId());
 
-            GoogleScholarEntity entity = (GoogleScholarEntity) getActualHirshEntity(user.getGoogleScholarEntities());
-            userDTO.setGoogleScholarHIndex(String.valueOf(entity.getIndex()));
-            userDTO.setGoogleScholarDocumentCount(String.valueOf(entity.getDocumentCount()));
+            ScopusEntity entity = (ScopusEntity) getActualHirshEntity(user.getScopusEntities());
+            userDTO.setScopusHIndex(String.valueOf(entity.getIndex()));
+            userDTO.setScopusDocumentCount(String.valueOf(entity.getDocumentCount()));
 
             userDTOs.add(userDTO);
         });

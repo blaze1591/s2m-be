@@ -76,7 +76,6 @@ public class UserController {
 
     @GetMapping("/report/cathedral/{cathedraName}")
     public ResponseEntity<List<UserReportDTO>> findDataForCathedral(@PathVariable String cathedraName) {
-        System.err.println(cathedraName);
         return ResponseEntity.ok(userService.findDataForCathedraReport(cathedraName));
     }
 }
