@@ -54,10 +54,13 @@ public class User extends BasicEntity {
 
     private List<ScopusEntity> scopusEntities;
     private int scopusCitationSumm;
+    private int scopusDocumentSumm;
     private List<GoogleScholarEntity> googleScholarEntities;
     private int googleScholarCitationSumm;
+    private int googleScholarDocumentSumm;
     private List<WebOfScienceEntity> webOfScienceEntities;
     private int webOfScienceCitationSumm;
+    private int webOfScienceDocumentSumm;
 
     private Date birthDate;
     private Date registrationDate;
@@ -286,6 +289,14 @@ public class User extends BasicEntity {
         this.scopusCitationSumm = scopusCitationSumm;
     }
 
+    public int getScopusDocumentSumm() {
+        return scopusDocumentSumm;
+    }
+
+    public void setScopusDocumentSumm(int scopusDocumentSumm) {
+        this.scopusDocumentSumm = scopusDocumentSumm;
+    }
+
     public List<GoogleScholarEntity> getGoogleScholarEntities() {
         return googleScholarEntities;
     }
@@ -302,6 +313,14 @@ public class User extends BasicEntity {
         this.googleScholarCitationSumm = googleScholarCitationSumm;
     }
 
+    public int getGoogleScholarDocumentSumm() {
+        return googleScholarDocumentSumm;
+    }
+
+    public void setGoogleScholarDocumentSumm(int googleScholarDocumentSumm) {
+        this.googleScholarDocumentSumm = googleScholarDocumentSumm;
+    }
+
     public List<WebOfScienceEntity> getWebOfScienceEntities() {
         return webOfScienceEntities;
     }
@@ -316,6 +335,14 @@ public class User extends BasicEntity {
 
     public void setWebOfScienceCitationSumm(int webOfScienceCitationSumm) {
         this.webOfScienceCitationSumm = webOfScienceCitationSumm;
+    }
+
+    public int getWebOfScienceDocumentSumm() {
+        return webOfScienceDocumentSumm;
+    }
+
+    public void setWebOfScienceDocumentSumm(int webOfScienceDocumentSumm) {
+        this.webOfScienceDocumentSumm = webOfScienceDocumentSumm;
     }
 
     public Date getBirthDate() {

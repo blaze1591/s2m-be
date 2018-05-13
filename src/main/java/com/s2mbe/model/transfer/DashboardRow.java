@@ -11,13 +11,7 @@ public interface DashboardRow {
 
     String getLastNameUa();
 
-    int getScopusCitationSumm();
-
     default String getName() {
         return getLastNameUa() + " " + getFirstNameUa() + " " + getMiddleNameUa();
-    }
-
-    default int getValue() {
-        return getScopusCitationSumm();
     }
 }

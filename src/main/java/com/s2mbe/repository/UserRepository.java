@@ -1,8 +1,6 @@
 package com.s2mbe.repository;
 
-import com.s2mbe.model.transfer.DashboardRow;
-import com.s2mbe.model.transfer.HirshProjection;
-import com.s2mbe.model.user.Cathedra;
+import com.s2mbe.model.transfer.*;
 import com.s2mbe.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -20,7 +18,26 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     User findByRegistrationToken(String registrationToken);
 
-    List<DashboardRow> findTop10ByOrderByScopusCitationSummDesc();
+    List<ScopusCitationRow> findTop10ByOrderByScopusCitationSummDesc();
+
+    List<GoogleScholarCitationRow> findTop10ByOrderByGoogleScholarCitationSummDesc();
+
+    List<WebOfScienceCitationRow> findTop10ByOrderByWebOfScienceCitationSummDesc();
+
+    List<ScopusDocumentRow> findTop10ByOrderByScopusDocumentSummDesc();
+
+    List<GoogleScholarDocumentRow> findTop10ByOrderByGoogleScholarDocumentSummDesc();
+
+    List<WebOfScienceDocumentRow> findTop10ByOrderByWebOfScienceDocumentSummDesc();
+
+    @Query(value = "{}")
+    List<GoogleScholarIndexRow> findTop10GSUsersByIndex();
+
+    @Query(value = "{}")
+    List<ScopusIndexRow> findTop10ScopusUsersByIndex();
+
+    @Query(value = "{}")
+    List<WebOfScienceIndexRow> findTop10WOSUsersByIndex();
 
     @Query(value = "{}")
     List<HirshProjection> findListOfHirshProjections();

@@ -1,7 +1,6 @@
 package com.s2mbe.service;
 
-import com.s2mbe.model.transfer.DashboardRow;
-import com.s2mbe.model.transfer.UserReportDTO;
+import com.s2mbe.model.transfer.*;
 import com.s2mbe.model.user.User;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,23 @@ public interface UserService {
 
     User findByNameOrEmail(String userName, String email);
 
-    List<DashboardRow> findTop10ScopusUsers();
+    List<ScopusCitationRow> findTop10ScopusUsersByCitation();
+
+    List<WebOfScienceCitationRow> findTop10WOSUsersByCitation();
+
+    List<GoogleScholarCitationRow> findTop10GSUsersByCitation();
+
+    List<ScopusDocumentRow> findTop10ScopusUsersByDocument();
+
+    List<WebOfScienceDocumentRow> findTop10WOSUsersByDocument();
+
+    List<GoogleScholarDocumentRow> findTop10GSUsersByDocument();
+
+    List<GoogleScholarIndexRow> findTop10GSUsersByIndex();
+
+    List<ScopusIndexRow> findTop10ScopusUsersByIndex();
+
+    List<WebOfScienceIndexRow> findTop10WOSUsersByIndex();
 
     Map<String, Object> findInfoForScopusReport();
 

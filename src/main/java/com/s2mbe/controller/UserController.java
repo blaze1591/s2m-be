@@ -1,7 +1,6 @@
 package com.s2mbe.controller;
 
 import com.s2mbe.model.hirsh.HirshEntity;
-import com.s2mbe.model.transfer.DashboardRow;
 import com.s2mbe.model.transfer.UserReportDTO;
 import com.s2mbe.model.user.User;
 import com.s2mbe.service.UserService;
@@ -10,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,9 +27,18 @@ public class UserController {
     }
 
     @GetMapping("/topTenDashboard")
-    public ResponseEntity<List<DashboardRow>> findTop10ByScopusCitations() {
-        List<DashboardRow> rows = userService.findTop10ScopusUsers();
-        return new ResponseEntity<>(rows, HttpStatus.OK);
+    public ResponseEntity<Map> findTop10ByScopusCitations() {
+        Map<String, Object> wrapMap = new HashMap<>();
+        wrapMap.put("scopusRows", userService.findTop10ScopusUsersByCitation());
+        wrapMap.put("gsRows", userService.findTop10GSUsersByCitation());
+        wrapMap.put("wosRows", userService.findTop10WOSUsersByCitation());
+        wrapMap.put("scopusByDoc", userService.findTop10ScopusUsersByDocument());
+        wrapMap.put("gsByDoc", userService.findTop10GSUsersByDocument());
+        wrapMap.put("wosByDoc", userService.findTop10WOSUsersByDocument());
+        wrapMap.put("scopusByIndex", userService.findTop10ScopusUsersByIndex());
+        wrapMap.put("gsByIndex", userService.findTop10GSUsersByIndex());
+        wrapMap.put("wosByIndex", userService.findTop10WOSUsersByIndex());
+        return new ResponseEntity<>(wrapMap, HttpStatus.OK);
     }
 
     @GetMapping("/scopusReport")
@@ -42,6 +51,9 @@ public class UserController {
         user.setScopusCitationSumm(summHirshCitationCounts(user.getScopusEntities()));
         user.setGoogleScholarCitationSumm(summHirshCitationCounts(user.getGoogleScholarEntities()));
         user.setWebOfScienceCitationSumm(summHirshCitationCounts(user.getWebOfScienceEntities()));
+        user.setScopusDocumentSumm(summHirshDocCounts(user.getScopusEntities()));
+        user.setGoogleScholarDocumentSumm(summHirshDocCounts(user.getGoogleScholarEntities()));
+        user.setWebOfScienceDocumentSumm(summHirshDocCounts(user.getWebOfScienceEntities()));
 
         user = userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -69,9 +81,15 @@ public class UserController {
     private int summHirshCitationCounts(List<? extends HirshEntity> hirshEntities) {
         int[] citationCountSumm = {0};
         hirshEntities.forEach(hirshEntity ->
-            citationCountSumm[0] += hirshEntity.getCitationCount()
+                citationCountSumm[0] += hirshEntity.getCitationCount()
         );
         return citationCountSumm[0];
+    }
+
+    private int summHirshDocCounts(List<? extends HirshEntity> hirshEntities) {
+        return hirshEntities.stream()
+                .map(HirshEntity::getDocumentCount)
+                .reduce(0, (prev, next) -> prev + next);
     }
 
     @GetMapping("/report/cathedral/{cathedraName}")

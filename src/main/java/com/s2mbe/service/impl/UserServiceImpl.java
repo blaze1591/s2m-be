@@ -6,9 +6,7 @@ import com.s2mbe.error.UserNotFoundException;
 import com.s2mbe.error.validation.EntityValidator;
 import com.s2mbe.model.hirsh.HirshEntity;
 import com.s2mbe.model.hirsh.ScopusEntity;
-import com.s2mbe.model.transfer.DashboardRow;
-import com.s2mbe.model.transfer.HirshProjection;
-import com.s2mbe.model.transfer.UserReportDTO;
+import com.s2mbe.model.transfer.*;
 import com.s2mbe.model.user.Cathedra;
 import com.s2mbe.model.user.Credentials;
 import com.s2mbe.model.user.User;
@@ -110,8 +108,54 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<DashboardRow> findTop10ScopusUsers() {
+    public List<ScopusCitationRow> findTop10ScopusUsersByCitation() {
         return userRepository.findTop10ByOrderByScopusCitationSummDesc();
+    }
+
+    @Override
+    public List<WebOfScienceCitationRow> findTop10WOSUsersByCitation() {
+        return userRepository.findTop10ByOrderByWebOfScienceCitationSummDesc();
+    }
+
+    @Override
+    public List<GoogleScholarCitationRow> findTop10GSUsersByCitation() {
+        return userRepository.findTop10ByOrderByGoogleScholarCitationSummDesc();
+    }
+
+    @Override
+    public List<ScopusDocumentRow> findTop10ScopusUsersByDocument() {
+        return userRepository.findTop10ByOrderByScopusDocumentSummDesc();
+    }
+
+    @Override
+    public List<WebOfScienceDocumentRow> findTop10WOSUsersByDocument() {
+        return userRepository.findTop10ByOrderByWebOfScienceDocumentSummDesc();
+    }
+
+    @Override
+    public List<GoogleScholarDocumentRow> findTop10GSUsersByDocument() {
+        return userRepository.findTop10ByOrderByGoogleScholarDocumentSummDesc();
+    }
+
+    @Override
+    public List<GoogleScholarIndexRow> findTop10GSUsersByIndex() {
+        List<GoogleScholarIndexRow> rows = userRepository.findTop10GSUsersByIndex();
+        rows.sort(Comparator.comparing(GoogleScholarIndexRow::getValue).reversed());
+        return rows.stream().limit(10).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ScopusIndexRow> findTop10ScopusUsersByIndex() {
+        List<ScopusIndexRow> rows = userRepository.findTop10ScopusUsersByIndex();
+        rows.sort(Comparator.comparing(ScopusIndexRow::getValue).reversed());
+        return rows.stream().limit(10).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<WebOfScienceIndexRow> findTop10WOSUsersByIndex() {
+        List<WebOfScienceIndexRow> rows = userRepository.findTop10WOSUsersByIndex();
+        rows.sort(Comparator.comparing(WebOfScienceIndexRow::getValue).reversed());
+        return rows.stream().limit(10).collect(Collectors.toList());
     }
 
     @Override
